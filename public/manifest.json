@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "React Starter Kit",
+  "name": "React Starter Kit",
   "icons": [
     {
       "src": "favicon.ico",
