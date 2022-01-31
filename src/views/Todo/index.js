@@ -18,11 +18,14 @@ import {
   Col,
 } from 'reactstrap'
 import { Controller, useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { addTodo, deleteTodo } from '../../redux/todo/actions'
+import { nanoid } from 'nanoid'
 
 function Todo() {
-  const [todoList, setTodoList] = React.useState([])
+  const { todoList } = useSelector((state) => state.todo)
+  const dispatch = useDispatch()
   const [modal, setModal] = useState(false)
-
   // react-hook-form
   const {
     handleSubmit,
@@ -30,18 +33,12 @@ function Todo() {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data) => {
-    setTodoList([...todoList, data])
-    localStorage.setItem('todoList', JSON.stringify([...todoList, data]))
+  const onSubmit = (todo) => {
+    todo['id'] = nanoid()
+    dispatch(addTodo(todo))
     setModal(!modal)
   }
 
-  useEffect(() => {
-    const todo = localStorage.getItem('todoList')
-      ? JSON.parse(localStorage.getItem('todoList'))
-      : []
-    setTodoList(todo)
-  }, [])
   return (
     <Container>
       <Card
@@ -61,13 +58,27 @@ function Todo() {
           </CardTitle>
         </CardHeader>
         <CardBody>
-          {todoList.map((todo, key) => {
-            return (
-              <CardBody className="shadow-sm p-3  rounded" key={key}>
-                {todo.name}
-              </CardBody>
-            )
-          })}
+          {todoList.length < 1 ? (
+            <CardBody></CardBody>
+          ) : (
+            todoList.map((todo, key) => {
+              return (
+                <CardBody className="shadow-sm p-3  rounded" key={key}>
+                  <Row>
+                    <Col sm={10}>{todo.name}</Col>
+                    <Col sm={2}>
+                      <span
+                        onClick={() => dispatch(deleteTodo(todo.id))}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        X
+                      </span>
+                    </Col>
+                  </Row>
+                </CardBody>
+              )
+            })
+          )}
         </CardBody>
       </Card>
 

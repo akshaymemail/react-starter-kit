@@ -3,13 +3,17 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import reportWebVitals from './reportWebVitals'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { Provider } from 'react-redux'
+import store from './redux/store'
 
 const App = lazy(() => import('./App'))
 
 ReactDOM.render(
-  <Suspense fallback={<p>...</p>}>
-    <App />
-  </Suspense>,
+  <Provider store={store}>
+    <Suspense fallback={<p>...</p>}>
+      <App />
+    </Suspense>
+  </Provider>,
   document.getElementById('root'),
 )
 
