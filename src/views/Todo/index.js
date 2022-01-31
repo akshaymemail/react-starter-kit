@@ -32,7 +32,7 @@ function Todo() {
 
   const onSubmit = (data) => {
     setTodoList([...todoList, data])
-    localStorage.setItem('todoList', JSON.stringify(todoList))
+    localStorage.setItem('todoList', JSON.stringify([...todoList, data]))
     setModal(!modal)
   }
 
@@ -44,17 +44,16 @@ function Todo() {
   }, [])
   return (
     <Container>
-      <Card className="mt-5" style={{ maxWidth: 500, margin: 'auto' }}>
+      <Card
+        className="mt-5 bg-dark shadow-lg p-3 mb-5 rounded"
+        style={{ maxWidth: 500, margin: 'auto' }}
+      >
         <CardHeader>
           <CardTitle>
             <Row>
               <Col sm={9}>Todo List</Col>
               <Col sm={3}>
-                <Button
-                  size="sm"
-                  color="primary"
-                  onClick={() => setModal(!modal)}
-                >
+                <Button size="sm" color="dark" onClick={() => setModal(!modal)}>
                   Add New
                 </Button>
               </Col>
@@ -63,13 +62,21 @@ function Todo() {
         </CardHeader>
         <CardBody>
           {todoList.map((todo, key) => {
-            return <CardBody key={key}>{todo.name}</CardBody>
+            return (
+              <CardBody className="shadow-sm p-3  rounded" key={key}>
+                {todo.name}
+              </CardBody>
+            )
           })}
         </CardBody>
       </Card>
 
       {/* Add New Modal */}
-      <Modal isOpen={modal} toggle={() => setModal(!modal)}>
+      <Modal
+        className="text-dark"
+        isOpen={modal}
+        toggle={() => setModal(!modal)}
+      >
         <ModalHeader toggle={() => setModal(!modal)}>Add New Todo</ModalHeader>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <ModalBody>
@@ -87,7 +94,7 @@ function Todo() {
             </FormGroup>
           </ModalBody>
           <ModalFooter>
-            <Button color="primary">Add Now</Button>{' '}
+            <Button color="success">Add Now</Button>{' '}
           </ModalFooter>
         </Form>
       </Modal>
