@@ -1,5 +1,5 @@
-function App() {
-  return <h1>React Starter Kit</h1>;
-}
+import Router from './router/Router'
 
-export default App;
+const App = () => <Router />
+
+export default App
