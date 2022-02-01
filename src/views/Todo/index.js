@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Card,
   CardBody,
@@ -59,7 +59,7 @@ function Todo() {
         </CardHeader>
         <CardBody>
           {todoList.length < 1 ? (
-            <CardBody></CardBody>
+            <CardBody>Todo is empty, Try adding new!</CardBody>
           ) : (
             todoList.map((todo, key) => {
               return (
