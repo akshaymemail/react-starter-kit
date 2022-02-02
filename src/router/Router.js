@@ -1,22 +1,26 @@
 import React, { lazy } from 'react'
 import routes from './routes'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Navigate, Routes, Route } from 'react-router-dom'
+import Login from '../views/Pages/Login'
 const Home = lazy(() => import('../views/Pages/Home'))
-const NoMatch = lazy(() => import('../views/Pages/NoMatch'))
 
 function Router() {
+  const isLoggedIn = true
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {routes.map((route, key) => {
+    <Routes>
+      <Route path="/" element={<Home />} />
+      {isLoggedIn &&
+        routes.map((route, key) => {
           return (
             <Route key={key} path={route.path} element={<route.component />} />
           )
         })}
-        <Route path="*" element={<NoMatch />} />
-      </Routes>
-    </BrowserRouter>
+      {!isLoggedIn && <Route path="/login" element={<Login />} />}
+      <Route
+        path="*"
+        element={isLoggedIn ? <Navigate to="/" /> : <Navigate to="/login" />}
+      />
+    </Routes>
   )
 }
 
