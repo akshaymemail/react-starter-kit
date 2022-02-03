@@ -14,12 +14,12 @@ import {
 } from 'reactstrap'
 import { STORAGE_TOKEN_KEY_NAME } from '../../auth/jwtDefaultConfig'
 import USERS from '../../fake-db/users'
+import { nanoid } from 'nanoid'
+import history from '../../utils/history'
 
 function Login(props) {
   const [loading, setLoading] = useState(false)
-
   const {
-    register,
     handleSubmit,
     formState: { errors },
     control,
@@ -32,10 +32,12 @@ function Login(props) {
       )
       if (user) {
         localStorage.setItem('userData', JSON.stringify(user))
-        localStorage.setItem(STORAGE_TOKEN_KEY_NAME, 'fake-token')
+        localStorage.setItem(STORAGE_TOKEN_KEY_NAME, `fake-token-${nanoid()}`)
         toast('Login Successful!', { type: 'success' })
         setLoading(false)
-        window.location.reload()
+        setTimeout(() => {
+          window.location.reload()
+        }, 500)
       } else {
         toast('Invalid email or password', { type: 'error' })
         setLoading(false)
