@@ -12,7 +12,6 @@ import {
   Input,
   Button,
 } from 'reactstrap'
-import { Navigate } from 'react-router-dom'
 import { STORAGE_TOKEN_KEY_NAME } from '../../auth/jwtDefaultConfig'
 import USERS from '../../fake-db/users'
 
@@ -41,7 +40,7 @@ function Login(props) {
         toast('Invalid email or password', { type: 'error' })
         setLoading(false)
       }
-    }, 3000)
+    }, 1000)
   }
   return (
     <Card
