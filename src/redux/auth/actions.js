@@ -12,7 +12,7 @@ export const loginAction =
         type: Actions.LOGIN_SUCCESS,
         payload: { token, user },
       })
-    }, [])
+    }, 3000)
   }
 
 export const logOutAction = () => (dispatch) => {

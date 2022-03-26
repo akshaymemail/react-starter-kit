@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
 import {
   Card,
   CardHeader,
@@ -12,16 +11,12 @@ import {
   Input,
   Button,
 } from 'reactstrap'
-import { STORAGE_TOKEN_KEY_NAME } from '../../auth/jwtDefaultConfig'
-import USERS from '../../fake-db/users'
-import { nanoid } from 'nanoid'
-import history from '../../utils/history'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginAction } from '../../redux/auth/actions'
 
 function Login() {
   const dispatch = useDispatch()
-  const { loading, token } = useSelector((state) => state.auth)
+  const { loading } = useSelector((state) => state.auth)
   const {
     handleSubmit,
     formState: { errors },
@@ -30,11 +25,6 @@ function Login() {
   const onSubmit = (d) => {
     dispatch(loginAction(d))
   }
-  useEffect(() => {
-    if (token) {
-      history.replace('/', true)
-    }
-  }, [token])
   return (
     <Card
       className="mt-5 bg-dark shadow-lg p-3 mb-5 rounded"
