@@ -31,12 +31,14 @@ function Todo() {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm()
 
   const onSubmit = (todo) => {
     todo['id'] = nanoid()
     dispatch(addTodo(todo))
     setModal(!modal)
+    reset({})
   }
 
   return (

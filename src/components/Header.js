@@ -1,4 +1,5 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
   Collapse,
@@ -8,10 +9,12 @@ import {
   NavbarToggler,
   NavItem,
 } from 'reactstrap'
+import { logOutAction } from '../redux/auth/actions'
 
 function Header() {
+  const dispatch = useDispatch()
   const logoutHandler = () => {
-    console.log('logout')
+    dispatch(logOutAction())
   }
   const [isOpen, setIsOpen] = React.useState(false)
   return (

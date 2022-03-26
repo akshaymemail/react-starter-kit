@@ -2,13 +2,14 @@ import React, { Fragment, lazy } from 'react'
 import routes from './routes'
 import { Navigate, Routes, Route } from 'react-router-dom'
 import Login from '../views/Pages/Login'
-import { isUserLoggedIn } from '../auth/utils'
+import { useSelector } from 'react-redux'
 const Home = lazy(() => import('../views/Pages/Home'))
 
 function Router() {
+  const { token } = useSelector((state) => state.auth)
   return (
     <Routes>
-      {isUserLoggedIn() && (
+      {token && (
         <Fragment>
           <Route path="/" element={<Home />} />
           {routes.map((route, key) => {
@@ -23,12 +24,10 @@ function Router() {
         </Fragment>
       )}
 
-      {!isUserLoggedIn() && <Route path="/login" element={<Login />} />}
+      {!token && <Route path="/login" element={<Login />} />}
       <Route
         path="*"
-        element={
-          isUserLoggedIn() ? <Navigate to="/" /> : <Navigate to="/login" />
-        }
+        element={token ? <Navigate to="/" /> : <Navigate to="/login" />}
       />
     </Routes>
   )

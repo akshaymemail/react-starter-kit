@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import {
@@ -16,34 +16,25 @@ import { STORAGE_TOKEN_KEY_NAME } from '../../auth/jwtDefaultConfig'
 import USERS from '../../fake-db/users'
 import { nanoid } from 'nanoid'
 import history from '../../utils/history'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginAction } from '../../redux/auth/actions'
 
-function Login(props) {
-  const [loading, setLoading] = useState(false)
+function Login() {
+  const dispatch = useDispatch()
+  const { loading, token } = useSelector((state) => state.auth)
   const {
     handleSubmit,
     formState: { errors },
     control,
   } = useForm()
   const onSubmit = (d) => {
-    setLoading(true)
-    setTimeout(() => {
-      const user = USERS.find(
-        (u) => u.email === d.email && u.password === d.password,
-      )
-      if (user) {
-        localStorage.setItem('userData', JSON.stringify(user))
-        localStorage.setItem(STORAGE_TOKEN_KEY_NAME, `fake-token-${nanoid()}`)
-        toast('Login Successful!', { type: 'success' })
-        setLoading(false)
-        setTimeout(() => {
-          window.location.reload()
-        }, 500)
-      } else {
-        toast('Invalid email or password', { type: 'error' })
-        setLoading(false)
-      }
-    }, 1000)
+    dispatch(loginAction(d))
   }
+  useEffect(() => {
+    if (token) {
+      history.replace('/', true)
+    }
+  }, [token])
   return (
     <Card
       className="mt-5 bg-dark shadow-lg p-3 mb-5 rounded"

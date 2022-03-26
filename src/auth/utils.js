@@ -7,4 +7,4 @@ export const isUserLoggedIn = () => {
   )
 }
 
-export const getUserData = () => JSON.parse(localStorage.getItem('userData'))
+export const getUserData = () => JSON.parse(localStorage.getItem('user'))
