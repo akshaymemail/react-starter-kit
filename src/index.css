@@ -10,6 +10,11 @@ body {
 /*
  * Globals
  */
+a {
+  text-decoration: none !important;
+  margin: 0 10px;
+  color: #ffffff;
+}
 
 /* Custom default button */
 .btn-secondary,
