@@ -16,7 +16,7 @@ import { loginAction } from '../../redux/auth/actions'
 
 function Login() {
   const dispatch = useDispatch()
-  const { loading } = useSelector((state) => state.auth)
+  const { loading, error } = useSelector((state) => state.auth)
   const {
     handleSubmit,
     formState: { errors },
@@ -70,6 +70,7 @@ function Login() {
             {errors.password && (
               <span className="text-danger">This field is required</span>
             )}
+            {error && <span className="text-danger">{error}</span>}
           </FormGroup>
           <Button color="dark" className="mt-5" block>
             {loading ? <i className="fas fa-spinner fa-spin"></i> : 'Login'}

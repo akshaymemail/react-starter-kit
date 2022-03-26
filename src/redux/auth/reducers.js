@@ -13,19 +13,16 @@ export const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case Actions.LOGIN_REQUEST:
       return {
-        ...state,
         loading: true,
       }
     case Actions.LOGIN_SUCCESS:
       return {
-        ...state,
         loading: false,
         user: action.payload.user,
         token: action.payload.token,
       }
     case Actions.LOGIN_FAILURE:
       return {
-        ...state,
         loading: false,
         error: action.payload,
       }
