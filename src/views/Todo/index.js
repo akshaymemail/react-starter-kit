@@ -21,11 +21,13 @@ import { Controller, useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { addTodo, deleteTodo } from '../../redux/todo/actions'
 import { nanoid } from 'nanoid'
+import { useTranslation } from 'react-i18next'
 
 function Todo() {
-  const { todoList } = useSelector((state) => state.todo)
+  const { todoList } = useSelector(state => state.todo)
   const dispatch = useDispatch()
   const [modal, setModal] = useState(false)
+  const { t } = useTranslation()
   // react-hook-form
   const {
     handleSubmit,
@@ -34,7 +36,7 @@ function Todo() {
     reset,
   } = useForm()
 
-  const onSubmit = (todo) => {
+  const onSubmit = todo => {
     todo['id'] = nanoid()
     dispatch(addTodo(todo))
     setModal(!modal)
@@ -53,7 +55,7 @@ function Todo() {
               <Col sm={9}>Todo List</Col>
               <Col sm={3}>
                 <Button size="sm" color="dark" onClick={() => setModal(!modal)}>
-                  Add New
+                  {t('add_new')}
                 </Button>
               </Col>
             </Row>
