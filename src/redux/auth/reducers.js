@@ -1,11 +1,12 @@
+import Constants from '../../constants'
 import * as Types from './types'
 const initialState = {
   loading: false,
-  user: localStorage.getItem('user')
-    ? JSON.parse(localStorage.getItem('user'))
+  user: localStorage.getItem(Constants.AUTH.USER_DATA)
+    ? JSON.parse(localStorage.getItem(Constants.AUTH.USER_DATA))
     : {},
-  token: localStorage.getItem('token')
-    ? JSON.parse(localStorage.getItem('token'))
+  token: localStorage.getItem(Constants.AUTH.ACCESS_TOKEN)
+    ? JSON.parse(localStorage.getItem(Constants.AUTH.ACCESS_TOKEN))
     : null,
 }
 

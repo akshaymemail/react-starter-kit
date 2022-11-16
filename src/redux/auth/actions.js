@@ -1,3 +1,4 @@
+import Constants from '../../constants'
 import USERS from '../../db/users'
 import * as Types from './types'
 export const loginAction =
@@ -10,8 +11,11 @@ export const loginAction =
         if (user.password === password) {
           const token = 'fake-jwt-token'
           const user = { email }
-          localStorage.setItem('token', JSON.stringify(token))
-          localStorage.setItem('user', JSON.stringify(user))
+          localStorage.setItem(
+            Constants.AUTH.ACCESS_TOKEN,
+            JSON.stringify(token),
+          )
+          localStorage.setItem(Constants.AUTH.USER_DATA, JSON.stringify(user))
           dispatch({
             type: Types.LOGIN_SUCCESS,
             payload: { token, user },
@@ -32,7 +36,7 @@ export const loginAction =
   }
 
 export const logOutAction = () => (dispatch) => {
-  localStorage.removeItem('token')
-  localStorage.removeItem('user')
+  localStorage.removeItem(Constants.AUTH.ACCESS_TOKEN)
+  localStorage.removeItem(Constants.AUTH.USER_DATA)
   dispatch({ type: Types.USER_SIGN_OUT })
 }
