@@ -83,6 +83,7 @@ The project structure presented in this boilerplate is **fractal**, where functi
 │   │   └── endpoints.js     # All Endpoints used in the project
 │   │   └── http.js          # API client configuration
 │   ├── components           # Global Reusable Components
+│   ├── constants            # Global Reusable Constants
 │   ├── db                   # Hard coded json files
 │   │   └── users.js         # An example of all timezones information
 │   ├── helpers              # Global Reusable helpers functions
