@@ -1,5 +1,6 @@
 import https from './https'
 
+// re-write or customize this based on your requirement!
 class Services {
   static get = (endpoint, params) => {
     return new Promise((resolve, reject) => {
