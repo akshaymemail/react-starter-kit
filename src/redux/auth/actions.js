@@ -1,9 +1,9 @@
 import USERS from '../../fake-db/users'
-import * as Actions from './types'
+import * as Types from './types'
 export const loginAction =
   ({ email, password }) =>
   (dispatch) => {
-    dispatch({ type: Actions.LOGIN_REQUEST })
+    dispatch({ type: Types.LOGIN_REQUEST })
     setTimeout(() => {
       const user = USERS.find((u) => u.email === email)
       if (user) {
@@ -13,18 +13,18 @@ export const loginAction =
           localStorage.setItem('token', JSON.stringify(token))
           localStorage.setItem('user', JSON.stringify(user))
           dispatch({
-            type: Actions.LOGIN_SUCCESS,
+            type: Types.LOGIN_SUCCESS,
             payload: { token, user },
           })
         } else {
           dispatch({
-            type: Actions.LOGIN_FAILURE,
+            type: Types.LOGIN_FAILURE,
             payload: 'Invalid password',
           })
         }
       } else {
         dispatch({
-          type: Actions.LOGIN_FAILURE,
+          type: Types.LOGIN_FAILURE,
           payload: 'Invalid email or password',
         })
       }
@@ -34,5 +34,5 @@ export const loginAction =
 export const logOutAction = () => (dispatch) => {
   localStorage.removeItem('token')
   localStorage.removeItem('user')
-  dispatch({ type: Actions.USER_SIGN_OUT })
+  dispatch({ type: Types.USER_SIGN_OUT })
 }
