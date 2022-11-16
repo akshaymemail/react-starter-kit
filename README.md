@@ -107,8 +107,8 @@ The project structure presented in this boilerplate is **fractal**, where functi
 │   │   │   ├── Login.js     # Login screen
 │   │   │   ├── Register.js  # Register screen
 │   │   │   ├── Profile.js   # Profile screen
-│   │   └── pages /*         # common pages like 404, error, under maintenance etc
-│   │   └── quiz  /*         # quiz screens
+│   │   └── Pages /*         # common pages like 404, error, under maintenance etc
+│   │   └── Todos  /*        # todos screens
 │   ├── i18n.js              # Globalization
 │   ├── index.css            # Global css
 ```
