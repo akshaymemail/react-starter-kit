@@ -1,4 +1,4 @@
-import USERS from '../../fake-db/users'
+import USERS from '../../db/users'
 import * as Types from './types'
 export const loginAction =
   ({ email, password }) =>
