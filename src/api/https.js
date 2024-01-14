@@ -3,6 +3,8 @@
  */
 import axios from 'axios'
 import qs from 'qs'
+import store from '../redux/store'
+import { logOutAction } from '../redux/auth/actions'
 
 /**
  *
@@ -25,11 +27,15 @@ function parseError(messages) {
  * parse response
  */
 function parseBody(response) {
-  //  if (response.status === 200 && response.data.status.code === 200) { // - if use custom status code
+  // Check if the status code is 200.
   if (response.status === 200) {
-    return response.data
+    return response.data // If so, return the response data.
+  } else if (response.status >= 500) {
+    // if the status is 5xx do not show message from backend that may cause html content, provide your own message
+    return parseError('Internal Server Error')
   } else {
-    return this.parseError(response.data.messages)
+    // If the status code is not 200, call `parseError()` with the response's error messages.
+    return parseError(response.data.messages)
   }
 }
 
@@ -69,6 +75,11 @@ https.interceptors.response.use(
   (error) => {
     console.warn('Error status', error.response.status)
     // return Promise.reject(error)
+    if (error.response.status === 401) {
+      localStorage.clear()
+      store.dispatch(logOutAction())
+      return
+    }
     if (error.response) {
       return parseError(error.response.data)
     } else {
