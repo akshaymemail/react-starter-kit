@@ -22,6 +22,7 @@
     "web-vitals": "^3.4.0"
   },
   "scripts": {
+    "prebuild": "node auto-app-version.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
