@@ -1,22 +1,22 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   Collapse,
   Nav,
   Navbar,
   NavbarBrand,
   NavbarToggler,
-  NavItem,
-} from 'reactstrap'
-import { logOutAction } from '../redux/auth/actions'
+  NavItem
+} from "reactstrap";
+import AuthActions from "../redux/auth/actions";
 
 function Header() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const logoutHandler = () => {
-    dispatch(logOutAction())
-  }
-  const [isOpen, setIsOpen] = React.useState(false)
+    dispatch(AuthActions.logout());
+  };
+  const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div>
       <Navbar color="dark" expand="md" light>
@@ -56,7 +56,7 @@ function Header() {
         </Collapse>
       </Navbar>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;

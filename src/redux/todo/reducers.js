@@ -1,21 +1,23 @@
-import * as types from './types'
+import TYPES from "./types";
 const initialState = {
-  todoList: localStorage.getItem('todoList')
-    ? JSON.parse(localStorage.getItem('todoList'))
-    : [],
-}
+  todoList: localStorage.getItem("todoList")
+    ? JSON.parse(localStorage.getItem("todoList"))
+    : []
+};
 
-export const todoReducer = (state = initialState, action) => {
+const todoReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_TODO:
+    case TYPES.ADD_TODO:
       return {
-        todoList: action.payload,
-      }
-    case types.DELETE_TODO:
+        todoList: action.payload
+      };
+    case TYPES.DELETE_TODO:
       return {
-        todoList: action.payload,
-      }
+        todoList: action.payload
+      };
     default:
-      return state
+      return state;
   }
-}
+};
+
+export default todoReducer;

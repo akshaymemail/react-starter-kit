@@ -1,10 +1,10 @@
-import { combineReducers } from 'redux'
-import { loginReducer } from './auth/reducers'
-import { todoReducer } from './todo/reducers'
+import { combineReducers } from "redux";
+import todoReducer from "./todo/reducers";
+import loginReducer from "./auth/reducers";
 
 const reducers = combineReducers({
   todo: todoReducer,
-  auth: loginReducer,
-})
+  auth: loginReducer
+});
 
-export default reducers
+export default reducers;
