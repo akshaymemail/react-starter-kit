@@ -1,5 +1,5 @@
-import Constants from '../../constants'
-import * as Types from './types'
+import Constants from "../../constants";
+import TYPES from "./types";
 const initialState = {
   loading: false,
   user: localStorage.getItem(Constants.AUTH.USER_DATA)
@@ -7,33 +7,35 @@ const initialState = {
     : {},
   token: localStorage.getItem(Constants.AUTH.ACCESS_TOKEN)
     ? JSON.parse(localStorage.getItem(Constants.AUTH.ACCESS_TOKEN))
-    : null,
-}
+    : null
+};
 
-export const loginReducer = (state = initialState, action) => {
+const loginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case Types.LOGIN_REQUEST:
+    case TYPES.LOGIN_REQUEST:
       return {
-        loading: true,
-      }
-    case Types.LOGIN_SUCCESS:
+        loading: true
+      };
+    case TYPES.LOGIN_SUCCESS:
       return {
         loading: false,
         user: action.payload.user,
-        token: action.payload.token,
-      }
-    case Types.LOGIN_FAILURE:
+        token: action.payload.token
+      };
+    case TYPES.LOGIN_FAILURE:
       return {
         loading: false,
-        error: action.payload,
-      }
-    case Types.USER_SIGN_OUT:
+        error: action.payload
+      };
+    case TYPES.USER_SIGN_OUT:
       return {
         loading: false,
         token: null,
-        user: null,
-      }
+        user: null
+      };
     default:
-      return state
+      return state;
   }
-}
+};
+
+export default loginReducer;
