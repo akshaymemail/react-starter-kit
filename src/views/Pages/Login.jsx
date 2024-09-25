@@ -9,10 +9,10 @@ import {
   FormGroup,
   Label,
   Input,
-  Button
+  Button,
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import AuthActions from "../../redux/auth/actions";
+import AuthAPI from "../../redux/features/auth/api";
 
 function Login() {
   const dispatch = useDispatch();
@@ -20,10 +20,10 @@ function Login() {
   const {
     handleSubmit,
     formState: { errors },
-    control
+    control,
   } = useForm();
   const onSubmit = (d) => {
-    dispatch(AuthActions.login(d));
+    dispatch(AuthAPI.login(d));
   };
   return (
     <Card

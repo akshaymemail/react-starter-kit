@@ -1,7 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Layout from '../../layouts/Layout'
-import packageJson from '../../../package.json'
+import React from "react";
+import { Link } from "react-router-dom";
+import Layout from "../../layouts/Layout";
+import packageJson from "../../../package.json";
 
 function Home() {
   return (
@@ -21,7 +21,7 @@ function Home() {
         <p>App Version {packageJson.version}</p>
       </main>
     </Layout>
-  )
+  );
 }
 
-export default Home
+export default Home;

@@ -38,19 +38,19 @@ $ cd <my-project-name>
 .env.development
 
 ```bash
-REACT_APP_BASE_URL=<baseUrl>
+VITE_BASE_URL=<baseUrl>
 ```
 
 .env.production
 
 ```bash
-REACT_APP_BASE_URL=<baseUrl>
+VITE_BASE_URL=<baseUrl>
 ```
 
 .env.test
 
 ```bash
-REACT_APP_BASE_URL=<baseUrl>
+VITE_BASE_URL=<baseUrl>
 ```
 
 When that's done, install the project dependencies. It is recommended that you use `npm install`.

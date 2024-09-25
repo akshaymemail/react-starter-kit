@@ -15,25 +15,26 @@ import {
   Label,
   Input,
   Row,
-  Col
+  Col,
 } from "reactstrap";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
 import { useTranslation } from "react-i18next";
-import TodoActions from "../../redux/todo/actions";
+import todoSlice from "../../redux/features/todo/todoSlice";
 
 function Todo() {
-  const { todoList } = useSelector((state) => state.todo);
+  const { todo } = useSelector((state) => state.todo);
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const { t } = useTranslation();
+  const { actions: TodoActions } = todoSlice;
   // react-hook-form
   const {
     handleSubmit,
     control,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
   const onSubmit = (todo) => {
@@ -62,10 +63,10 @@ function Todo() {
           </CardTitle>
         </CardHeader>
         <CardBody>
-          {todoList.length < 1 ? (
+          {todo.length < 1 ? (
             <CardBody>Todo is empty, Try adding new!</CardBody>
           ) : (
-            todoList.map((todo, key) => {
+            todo.map((todo, key) => {
               return (
                 <CardBody className="shadow-sm p-3  rounded" key={key}>
                   <Row>

@@ -1,10 +1,10 @@
 /**
  * src/api/http.js
  */
-import axios from 'axios'
-import qs from 'qs'
-import store from '../redux/store'
-import { logOutAction } from '../redux/auth/actions'
+import axios from "axios";
+import qs from "qs";
+import store from "../redux/store";
+import { logOutAction } from "../redux/auth/actions";
 
 /**
  *
@@ -14,12 +14,12 @@ function parseError(messages) {
   // error
   if (messages) {
     if (messages instanceof Array) {
-      return Promise.reject({ messages: messages })
+      return Promise.reject({ messages: messages });
     } else {
-      return Promise.reject({ messages: [messages] })
+      return Promise.reject({ messages: [messages] });
     }
   } else {
-    return Promise.reject({ messages: ['Something went wrong!'] })
+    return Promise.reject({ messages: ["Something went wrong!"] });
   }
 }
 
@@ -29,13 +29,13 @@ function parseError(messages) {
 function parseBody(response) {
   // Check if the status code is 200.
   if (response.status === 200) {
-    return response.data // If so, return the response data.
+    return response.data; // If so, return the response data.
   } else if (response.status >= 500) {
     // if the status is 5xx do not show message from backend that may cause html content, provide your own message
-    return parseError('Internal Server Error')
+    return parseError("Internal Server Error");
   } else {
     // If the status code is not 200, call `parseError()` with the response's error messages.
-    return parseError(response.data.messages)
+    return parseError(response.data.messages);
   }
 }
 
@@ -43,11 +43,11 @@ function parseBody(response) {
  * axios instance
  */
 let https = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   paramsSerializer: function (params) {
-    return qs.stringify(params, { indices: false })
+    return qs.stringify(params, { indices: false });
   },
-})
+});
 
 // request header
 https.interceptors.request.use(
@@ -57,35 +57,35 @@ https.interceptors.request.use(
     // config.headers = { 'Custom-Header-IF-Exist': apiToken }
     config.headers = {
       Authorization: `Bearer ${JSON.parse(
-        localStorage.getItem('access-token'),
+        localStorage.getItem("access-token")
       )}`,
-    }
-    return config
+    };
+    return config;
   },
   (error) => {
-    return Promise.reject(error)
-  },
-)
+    return Promise.reject(error);
+  }
+);
 
 // response parse
 https.interceptors.response.use(
   (response) => {
-    return parseBody(response)
+    return parseBody(response);
   },
   (error) => {
-    console.warn('Error status', error.response.status)
+    console.warn("Error status", error.response.status);
     // return Promise.reject(error)
     if (error.response.status === 401) {
-      localStorage.clear()
-      store.dispatch(logOutAction())
-      return
+      localStorage.clear();
+      store.dispatch(logOutAction());
+      return;
     }
     if (error.response) {
-      return parseError(error.response.data)
+      return parseError(error.response.data);
     } else {
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
-  },
-)
+  }
+);
 
-export default https
+export default https;

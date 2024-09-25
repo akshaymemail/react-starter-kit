@@ -7,12 +7,13 @@ import {
   Navbar,
   NavbarBrand,
   NavbarToggler,
-  NavItem
+  NavItem,
 } from "reactstrap";
-import AuthActions from "../redux/auth/actions";
+import authSlice from "../redux/features/auth/slice";
 
 function Header() {
   const dispatch = useDispatch();
+  const { actions: AuthActions } = authSlice;
   const logoutHandler = () => {
     dispatch(AuthActions.logout());
   };

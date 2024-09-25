@@ -2,7 +2,8 @@ import React, { Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import { store, persistor } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 const App = lazy(() => import("./App"));
 
@@ -15,9 +16,11 @@ const root = createRoot(container);
 // render your app
 root.render(
   <Provider store={store}>
-    <Suspense fallback={<p>...</p>}>
-      <App />
-    </Suspense>
+    <PersistGate persistor={persistor}>
+      <Suspense fallback={<p>...</p>}>
+        <App />
+      </Suspense>
+    </PersistGate>
   </Provider>
 );
 

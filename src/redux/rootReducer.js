@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import todoReducer from "./todo/reducers";
-import loginReducer from "./auth/reducers";
+import authSlice from "./features/auth/slice";
+import todoSlice from "./features/todo/todoSlice";
 
 const reducers = combineReducers({
-  todo: todoReducer,
-  auth: loginReducer
+  auth: authSlice.reducer,
+  todo: todoSlice.reducer,
 });
 
 export default reducers;
