@@ -1,73 +1,19 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-/*
- * Globals
- */
-a {
-  text-decoration: none !important;
-  margin: 0 10px;
-  color: #ffffff;
+.app-header {
+  position: fixed;
+  top: 0px;
+  z-index: 999;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 8px #f0f1f2;
 }
-
-/* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-}
-
-/*
- * Base structure
- */
-
-.cover-container {
-  max-width: 42em;
-}
-
-/*
- * Header
- */
-
-.nav-masthead .nav-link {
-  padding: 0.25rem 0;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
-  background-color: transparent;
-  border-bottom: 0.25rem solid transparent;
-}
-
-.nav-masthead .nav-link:hover,
-.nav-masthead .nav-link:focus {
-  border-bottom-color: rgba(255, 255, 255, 0.25);
-}
-
-.nav-masthead .nav-link + .nav-link {
-  margin-left: 1rem;
-}
-
-.nav-masthead .active {
-  color: #fff;
-  border-bottom-color: #fff;
-}
-
-.bd-placeholder-img {
-  font-size: 1.125rem;
-  text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-}
-
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
+.text-center {
+  text-align: center;
 }

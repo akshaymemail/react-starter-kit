@@ -1,124 +1,81 @@
 import React, { useState } from "react";
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardTitle,
-  Button,
-  Container,
-  Modal,
-  ModalBody,
-  ModalHeader,
-  ModalFooter,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Row,
-  Col,
-} from "reactstrap";
-import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { nanoid } from "nanoid";
-import { useTranslation } from "react-i18next";
-import todoSlice from "../../redux/features/todo/todoSlice";
+import todoSlice from "@redux/features/todo/todoSlice";
+import { Button, Card, Col, Form, Input, Row, Typography } from "antd";
+import AppModal from "@components/Modal";
+import AppLayout from "@layouts";
+import { XOutlined } from "@ant-design/icons";
 
 function Todo() {
   const { todo } = useSelector((state) => state.todo);
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
-  const { t } = useTranslation();
-  const { actions: TodoActions } = todoSlice;
-  // react-hook-form
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const TodoActions = todoSlice.actions;
 
   const onSubmit = (todo) => {
     todo["id"] = nanoid();
     dispatch(TodoActions.add(todo));
     setModal(!modal);
-    reset({});
   };
 
   return (
-    <Container>
+    <AppLayout>
       <Card
-        className="mt-5 bg-dark shadow-lg p-3 mb-5 rounded"
-        style={{ maxWidth: 500, margin: "auto" }}
+        style={{ maxWidth: 576, margin: "auto" }}
+        title="Todo List"
+        extra={
+          <Button onClick={() => setModal(!modal)} type="primary">
+            Add New
+          </Button>
+        }
       >
-        <CardHeader>
-          <CardTitle>
-            <Row>
-              <Col sm={9}>Todo List</Col>
-              <Col sm={3}>
-                <Button size="sm" color="dark" onClick={() => setModal(!modal)}>
-                  {t("add_new")}
-                </Button>
-              </Col>
-            </Row>
-          </CardTitle>
-        </CardHeader>
-        <CardBody>
-          {todo.length < 1 ? (
-            <CardBody>Todo is empty, Try adding new!</CardBody>
-          ) : (
-            todo.map((todo, key) => {
-              return (
-                <CardBody className="shadow-sm p-3  rounded" key={key}>
-                  <Row>
-                    <Col sm={10}>
-                      <p style={{ color: "#fff" }}>{todo.name}</p>
-                    </Col>
-                    <Col sm={2}>
-                      <span
-                        onClick={() => dispatch(TodoActions.delete(todo.id))}
-                        style={{ cursor: "pointer", color: "#fff" }}
-                      >
-                        X
-                      </span>
-                    </Col>
-                  </Row>
-                </CardBody>
-              );
-            })
-          )}
-        </CardBody>
+        {todo.length < 1 ? (
+          <Typography.Paragraph>
+            Todo is empty, Try adding new!
+          </Typography.Paragraph>
+        ) : (
+          todo.map((todo, key) => {
+            return (
+              <Row>
+                <Col sm={10}>
+                  <Typography.Paragraph>{todo.name}</Typography.Paragraph>
+                </Col>
+                <Col sm={2}>
+                  <Button
+                    type="text"
+                    onClick={() => dispatch(TodoActions.delete(todo.id))}
+                  >
+                    <XOutlined />
+                  </Button>
+                </Col>
+              </Row>
+            );
+          })
+        )}
       </Card>
 
       {/* Add New Modal */}
-      <Modal
-        className="text-dark"
-        isOpen={modal}
-        toggle={() => setModal(!modal)}
+      <AppModal
+        open={modal}
+        onClose={() => setModal(false)}
+        title="Add New Todo"
+        isOk={false}
+        isCancel={false}
       >
-        <ModalHeader toggle={() => setModal(!modal)}>Add New Todo</ModalHeader>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <ModalBody>
-            <FormGroup>
-              <Label>Todo Name</Label>
-              <Controller
-                name="name"
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <Input {...field} type="text" autoFocus />
-                )}
-                control={control}
-              />
-              {errors.todo && (
-                <span className="text-danger">This field is required</span>
-              )}
-            </FormGroup>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="success">Add Now</Button>{" "}
-          </ModalFooter>
+        <Form onFinish={onSubmit}>
+          <Form.Item label="Todo Name" name="name" rules={[{ required: true }]}>
+            <Input autoFocus />
+          </Form.Item>
+
+          <Form.Item label={null}>
+            <Button type="primary" htmlType="submit" block>
+              Submit
+            </Button>
+          </Form.Item>
         </Form>
-      </Modal>
-    </Container>
+      </AppModal>
+    </AppLayout>
   );
 }
 

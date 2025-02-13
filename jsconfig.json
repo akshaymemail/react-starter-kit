@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@constants/*": ["constants/*"],
+      "@db/*": ["db/*"],
+      "@helpers/*": ["helpers/*"],
+      "@layouts/*": ["layouts/*"],
+      "@navigation/*": ["navigation/*"],
+      "@redux/*": ["redux/*"],
+      "@services/*": ["services/*"],
+      "@themes/*": ["themes/*"],
+      "@utils/*": ["utils/*"],
+      "@views/*": ["views/*"]
+    }
+  },
+  "include": ["src/**/*"]
+}
