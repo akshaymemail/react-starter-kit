@@ -2,17 +2,17 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@constants/*": ["constants/*"],
-      "@db/*": ["db/*"],
-      "@helpers/*": ["helpers/*"],
-      "@layouts/*": ["layouts/*"],
-      "@navigation/*": ["navigation/*"],
-      "@redux/*": ["redux/*"],
-      "@services/*": ["services/*"],
-      "@themes/*": ["themes/*"],
-      "@utils/*": ["utils/*"],
-      "@views/*": ["views/*"]
+      "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
+      "@db/*": ["src/db/*"],
+      "@helpers/*": ["src/helpers/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@navigation/*": ["src/navigation/*"],
+      "@redux/*": ["src/redux/*"],
+      "@services/*": ["src/services/*"],
+      "@themes/*": ["src/themes/*"],
+      "@utils/*": ["src/utils/*"],
+      "@views/*": ["src/views/*"]
     }
   },
   "include": ["src/**/*"]

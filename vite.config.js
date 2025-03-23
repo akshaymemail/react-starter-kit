@@ -8,6 +8,7 @@ export default defineConfig({
   define: { global: "window" },
   resolve: {
     alias: {
+      "@": path.resolve(__dirname, "src"),
       "@components": path.resolve(__dirname, "src/components"),
       "@constants": path.resolve(__dirname, "src/constants"),
       "@db": path.resolve(__dirname, "src/db"),

@@ -1,26 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Layout from "../../layouts";
+import AppLayout from "@layouts";
 import packageJson from "../../../package.json";
+import { Flex, Typography } from "antd";
 
 function Home() {
   return (
-    <Layout>
-      <main className="px-3 mt-5 text-center">
-        <h1>Lets Build Something !</h1>
-        <p className="lead">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s.
-        </p>
-        <p className="lead mt-5">
-          <Link to="/todo" className="btn  fw-bold border-white bg-white">
-            Browse Todo
-          </Link>
-        </p>
-        <p>App Version {packageJson.version}</p>
-      </main>
-    </Layout>
+    <AppLayout>
+      <Flex
+        align="center"
+        justify="center"
+        style={{ minHeight: `calc(100dvh - var(--header-height))` }}
+      >
+        <Flex vertical className="text-center">
+          <Typography.Title>Let's Build!</Typography.Title>
+          <Typography.Text>App Version {packageJson.version}</Typography.Text>
+        </Flex>
+      </Flex>
+    </AppLayout>
   );
 }
 

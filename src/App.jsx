@@ -7,10 +7,9 @@ import { BrowserRouter as AppRouter } from "react-router-dom";
 import Fallback from "@components/Fallback";
 import { ConfigProvider as AppTheme } from "antd";
 import themes from "@themes";
-
 // file imports
 import "./i18n";
-import "./index.css";
+import "./global.css";
 
 function App() {
   const [theme, setTheme] = useState("light");

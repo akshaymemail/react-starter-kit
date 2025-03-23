@@ -11,12 +11,6 @@ const navItems = [
     label: "Todo",
     path: "/todo",
   },
-  {
-    id: 3,
-    key: "3",
-    label: "Logout",
-    path: "/auth/logout",
-  },
 ];
 
 export default navItems;

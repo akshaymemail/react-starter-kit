@@ -1,0 +1,88 @@
+:root {
+  --background: #fefefe;
+  --foreground: #171717;
+  --primary: #be3455;
+  --max-width: 1600px;
+  --font-family: "Nunito", sans-serif;
+  --header-height: 70px;
+  --footer-height: 70px;
+  --hf-height: 140px;
+}
+
+html,
+body {
+  max-width: 100%;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.underlined-link {
+  text-decoration: underline !important;
+}
+.logo {
+  cursor: pointer;
+  width: 40px;
+}
+.app-header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  background-color: #fafafa !important;
+  /* box-shadow: 0 2px 8px #f0f1f2; */
+  border-bottom: 1px solid #d1d5db;
+  padding: 0px 20px !important;
+  height: var(--header-height);
+}
+.app-header-content {
+  height: 100%;
+  max-width: var(--max-width);
+  margin: auto !important;
+}
+.app-container {
+  background-color: var(--background) !important;
+  min-height: calc(100dvh - var(--header-height)) !important;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 0px 20px;
+  padding-top: var(--header-height) !important;
+}
+.app-footer {
+  height: var(--footer-height);
+  padding: 24px 20px !important;
+  background-color: var(--background) !important;
+}
+.app-footer-content {
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+.full-height {
+  min-height: calc(100dvh - var(--hf-height));
+}
+.full-height-with-footer {
+  min-height: calc(100dvh - var(--footer-height));
+}
+.full-height-with-header {
+  min-height: calc(100dvh - var(--header-height));
+}
+
+.text-center {
+  text-align: center;
+}

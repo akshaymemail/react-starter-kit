@@ -2,6 +2,7 @@ import React from "react";
 import { Navigate, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import routes from "./routes";
+import NoMatch from "@views/NoMatch";
 
 function Navigation() {
   const { token } = useSelector((state) => state.auth);
@@ -14,7 +15,7 @@ function Navigation() {
               key={key}
               path={Page.path}
               element={
-                <ProtectedRoute token={token} path="/auth/login">
+                <ProtectedRoute token={token} path="/auth/signin">
                   <Page.component />
                 </ProtectedRoute>
               }
@@ -26,7 +27,7 @@ function Navigation() {
           );
         }
       })}
-      <Route path="*" element={<Navigate to="/page-not-found" />} />
+      <Route path="*" element={<NoMatch />} />
     </Routes>
   );
 }

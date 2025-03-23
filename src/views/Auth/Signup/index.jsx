@@ -24,7 +24,7 @@ function Signup() {
   return (
     <AppLayout>
       <Card
-        title="Login to your account"
+        title="Create new account"
         style={{ maxWidth: 576, margin: "auto" }}
       >
         <Form
