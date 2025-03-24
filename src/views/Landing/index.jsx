@@ -16,19 +16,18 @@ function Welcome() {
       <Flex vertical gap={100}>
         <Flex vertical>
           <Typography.Title className="text-center">
-            Flexible theme customization
+            React Starter Kit
           </Typography.Title>
           <Typography.Paragraph className="text-center">
-            Starter kit 5.0 enable extendable algorithm, make custom theme
-            easier
+            Starter kit 5.0
           </Typography.Paragraph>
         </Flex>
         <Flex gap={20} justify="center">
           <Button type="primary" onClick={handleSignup}>
-            Get Started
+            Signup
           </Button>
           <Button type="default" onClick={handleSignin}>
-            Alread Have Account
+            Login
           </Button>
         </Flex>
       </Flex>
