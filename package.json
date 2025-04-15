@@ -1,12 +1,13 @@
 {
-  "name": "hello-vite",
+  "name": "react-starter-kit",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "build": "vite build develop",
+    "build:staging": "vite build --mode staging",
+    "build:prod": "vite build --mode production",
     "preview": "vite preview"
   },
   "dependencies": {
